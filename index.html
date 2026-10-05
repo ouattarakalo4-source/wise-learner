@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wise Learner – Apprenez plus intelligemment</title>
+<meta name="description" content="Importez un PDF : Wise Learner le résume, le lit à voix haute et génère un quiz pour vous aider à retenir l'essentiel.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002B5B;--navy2:#004080;--gold:#FFD700;--sky:#EAF6FF;--gray:#97A0AF;--line:#E0E7EE;--ink:#1c2a3d}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.6}
+h1,h2,h3{font-family:Poppins,Inter,sans-serif;color:var(--navy);line-height:1.15}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.btn{display:inline-block;background:var(--gold);color:var(--navy);font-weight:600;padding:14px 26px;border-radius:14px;box-shadow:0 4px 12px rgba(255,215,0,.35)}
+.btn.ghost{background:transparent;color:#fff;box-shadow:none;border:1px solid rgba(255,255,255,.4)}
+nav{background:var(--navy);color:#fff}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-family:Poppins;font-weight:700;font-size:20px}
+.brand i{width:34px;height:34px;background:var(--gold);border-radius:9px;display:grid;place-items:center;font-style:normal;font-size:18px}
+nav ul{display:flex;gap:28px;list-style:none;font-size:15px}
+nav ul a{opacity:.85}nav ul a:hover{opacity:1}
+.hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:72px 0 88px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero h1{color:#fff;font-size:clamp(34px,5vw,54px);margin-bottom:20px}
+.hero p{color:rgba(255,255,255,.78);font-size:18px;max-width:46ch;margin-bottom:32px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.phone{justify-self:center;width:270px;aspect-ratio:9/17;background:#111;border-radius:42px;padding:11px;box-shadow:0 24px 48px rgba(0,0,0,.35)}
+.screen{height:100%;background:var(--sky);border-radius:32px;overflow:hidden;color:var(--navy)}
+.screen .top{background:var(--navy);color:#fff;padding:34px 18px 16px}
+.screen .top b{font-family:Poppins;font-size:17px;display:block}
+.screen .top span{font-size:12px;opacity:.7}
+.screen .body{padding:16px;display:grid;gap:12px}
+.mini{background:#fff;border-radius:14px;padding:14px;font-size:13px}
+.mini strong{display:block;margin-bottom:4px}
+.mini p{color:#5b6677;font-size:12px}
+.opt{display:block;border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-top:6px;font-size:12px}
+.opt.ok{border-color:#4CAF50;background:#eaf7eb;color:#2e7d32;font-weight:600}
+section{padding:80px 0}
+.sec-head{max-width:620px;margin-bottom:44px}
+.sec-head h2{font-size:clamp(28px,3.4vw,38px);margin-bottom:12px}
+.sec-head p{color:#5b6677}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s;list-style:none}
+.steps li{counter-increment:s;border-top:3px solid var(--gold);padding-top:16px}
+.steps li::before{content:counter(s);font-family:Poppins;font-weight:700;font-size:15px;color:var(--navy);display:block;margin-bottom:6px}
+.steps h3{font-size:18px;margin-bottom:6px}
+.steps p{font-size:15px;color:#5b6677}
+.features{background:var(--sky)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:#fff;border-radius:18px;padding:26px}
+.card .ic{font-size:30px;margin-bottom:12px}
+.card h3{font-size:18px;margin-bottom:8px}
+.card p{font-size:15px;color:#5b6677}
+.who{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.who div{border:1px solid var(--line);border-radius:14px;padding:20px}
+.who h3{font-size:17px;margin-bottom:6px}
+.who p{font-size:14px;color:#5b6677}
+.final{background:var(--navy);color:#fff;text-align:center}
+.final h2{color:#fff;font-size:clamp(28px,3.6vw,40px);margin-bottom:14px}
+.final p{color:rgba(255,255,255,.75);margin:0 auto 28px;max-width:48ch}
+form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+input[type=email]{padding:14px 16px;border-radius:14px;border:1px solid var(--line);font:inherit;min-width:260px}
+button.btn{border:0;font:inherit;font-weight:600;cursor:pointer}
+#msg{margin-top:14px;min-height:24px;color:var(--gold);font-weight:500}
+footer{padding:28px 0;color:var(--gray);font-size:14px;text-align:center}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.steps,.who{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}nav ul{display:none}}
+@media(max-width:520px){.steps,.who{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#"><i>🎓</i>Wise Learner</a>
+  <ul><li><a href="#comment">Comment ça marche</a></li><li><a href="#fonctions">Fonctionnalités</a></li><li><a href="#pour-qui">Pour qui</a></li></ul>
+  <a class="btn" href="#acces" style="padding:10px 20px">Accès anticipé</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div>
+    <h1>Apprenez plus intelligemment, à partir de vos propres PDF</h1>
+    <p>Importez un cours, un article ou un rapport. Wise Learner le résume, le lit à voix haute et vous propose un quiz pour vérifier ce que vous avez retenu.</p>
+    <div class="cta"><a class="btn" href="#acces">Rejoindre la liste d'attente</a><a class="btn ghost" href="#comment">Voir comment ça marche</a></div>
+  </div>
+  <div class="phone" aria-hidden="true"><div class="screen">
+    <div class="top"><b>Résumé généré ✨</b><span>cours_reseaux.pdf · 24 pages</span></div>
+    <div class="body">
+      <div class="mini"><strong>L'essentiel</strong><p>Le modèle OSI découpe la communication réseau en sept couches indépendantes.</p></div>
+      <div class="mini"><strong>Quiz · question 1/5</strong><p>Quelle couche gère le routage ?</p>
+        <span class="opt">Liaison de données</span><span class="opt ok">Réseau ✓</span><span class="opt">Transport</span></div>
+    </div>
+  </div></div>
+</div></header>
+
+<section id="comment"><div class="wrap">
+  <div class="sec-head"><h2>De la lecture à la mémorisation en quatre étapes</h2><p>Plus besoin de relire vingt pages pour savoir si vous avez compris.</p></div>
+  <ol class="steps">
+    <li><h3>Importez</h3><p>Déposez votre fichier PDF depuis votre ordinateur ou votre téléphone.</p></li>
+    <li><h3>Lisez le résumé</h3><p>L'IA extrait les idées clés et les présente de façon claire.</p></li>
+    <li><h3>Écoutez</h3><p>Une voix naturelle lit le texte, dans plusieurs langues.</p></li>
+    <li><h3>Testez-vous</h3><p>Un quiz généré automatiquement mesure votre compréhension.</p></li>
+  </ol>
+</div></section>
+
+<section id="fonctions" class="features"><div class="wrap">
+  <div class="sec-head"><h2>Tout ce qu'il faut pour étudier efficacement</h2></div>
+  <div class="grid">
+    <div class="card"><div class="ic">📄</div><h3>Résumé automatique</h3><p>Une synthèse fidèle de vos documents, que vous pouvez exporter.</p></div>
+    <div class="card"><div class="ic">🎧</div><h3>Lecture audio</h3><p>Écoutez vos cours en déplacement. Réglez la voix et la vitesse.</p></div>
+    <div class="card"><div class="ic">📝</div><h3>Quiz personnalisés</h3><p>Des QCM tirés de votre contenu, avec correction expliquée.</p></div>
+    <div class="card"><div class="ic">📊</div><h3>Tableau de bord</h3><p>Suivez votre progression et vos scores au fil du temps.</p></div>
+    <div class="card"><div class="ic">🌗</div><h3>Thème clair ou sombre</h3><p>Une interface confortable de jour comme de nuit.</p></div>
+    <div class="card"><div class="ic">🔒</div><h3>Données protégées</h3><p>Vos fichiers restent privés, dans le respect du RGPD.</p></div>
+  </div>
+</div></section>
+
+<section id="pour-qui"><div class="wrap">
+  <div class="sec-head"><h2>Conçu pour ceux qui lisent beaucoup</h2></div>
+  <div class="who">
+    <div><h3>Étudiants</h3><p>Comprendre et réviser ses cours plus vite.</p></div>
+    <div><h3>Enseignants</h3><p>Créer des quiz et des supports en quelques clics.</p></div>
+    <div><h3>Professionnels</h3><p>Lire efficacement des documents métier.</p></div>
+    <div><h3>Chercheurs</h3><p>Synthétiser des publications scientifiques.</p></div>
+  </div>
+</div></section>
+
+<section id="acces" class="final"><div class="wrap">
+  <h2>Soyez parmi les premiers à essayer Wise Learner</h2>
+  <p>Laissez votre e-mail : nous vous prévenons dès l'ouverture de l'application.</p>
+  <form id="f" novalidate>
+    <input type="email" id="email" placeholder="vous@exemple.com" aria-label="Adresse e-mail" required>
+    <button class="btn" type="submit">Me prévenir</button>
+  </form>
+  <div id="msg" role="status"></div>
+</div></section>
+
+<footer>© 2025 Wise Learner · Apprendre n'a jamais été aussi intelligent.</footer>
+
+<script>
+document.getElementById('f').addEventListener('submit',function(e){
+  e.preventDefault();
+  var v=document.getElementById('email').value.trim(),m=document.getElementById('msg');
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){m.style.color='#ffb4b4';m.textContent="Entrez une adresse e-mail valide.";return}
+  m.style.color='';m.textContent="Merci ! Nous vous écrirons dès l'ouverture.";this.reset();
+});
+</script>
+</body>
+</html>
