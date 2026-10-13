@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
     try {
       final req = http.MultipartRequest('POST', Uri.parse('$apiUrl/process'))
         ..files.add(http.MultipartFile.fromBytes('file', f.bytes!, filename: f.name));
-      final res = await http.Response.fromStream(await req.send().timeout(const Duration(seconds: 120)));
+      final res = await http.Response.fromStream(await req.send().timeout(const Duration(minutes: 15)));
       final body = jsonDecode(utf8.decode(res.bodyBytes));
       if (res.statusCode != 200) throw Exception(body['detail'] ?? 'Erreur serveur');
       if (!mounted) return;
@@ -205,3 +205,4 @@ class _QuizTabState extends State<QuizTab> {
     ]);
   }
 }
+
